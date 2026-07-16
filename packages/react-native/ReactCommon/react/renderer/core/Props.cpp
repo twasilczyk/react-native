@@ -45,7 +45,10 @@ void Props::initializeDynamicProps(
     const Props& sourceProps,
     const RawProps& rawProps,
     const std::function<bool(const std::string&)>& filterObjectKeys) {
-  if (ReactNativeFeatureFlags::enableAccumulatedUpdatesInRawPropsAndroid()) {
+  // The pull model also requires complete rawProps. A single pull may collapse
+  // several commits into one diff.
+  if (ReactNativeFeatureFlags::enableAccumulatedUpdatesInRawPropsAndroid() ||
+      ReactNativeFeatureFlags::enableMountingCoordinatorPullModelAndroid()) {
     auto& oldRawProps = sourceProps.rawProps;
     auto newRawProps = rawProps.toDynamic(filterObjectKeys);
     auto mergedRawProps = mergeDynamicProps(
