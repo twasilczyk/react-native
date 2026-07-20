@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<60e9a341a9bac28ccdfd61241e668468>>
+ * @generated SignedSource<<a236212e2ce595be3439372dcb1a8951>>
  */
 
 /**
@@ -183,6 +183,11 @@ class ReactNativeFeatureFlags {
    * When enabled, Android will build and initiate image prefetch requests on ImageShadowNode::layout
    */
   RN_EXPORT static bool enableImagePrefetchingAndroid();
+
+  /**
+   * When enabled, Image `tintColor` is handled as a true optional: any defined color is applied as a tint — including `transparent` (alpha 0), which renders the image invisible — and an unset value clears a previously applied tint. When disabled, the prior behavior is preserved, where a transparent `tintColor` is treated as unassigned and the image renders untinted.
+   */
+  RN_EXPORT static bool enableImageTransparentTintColor();
 
   /**
    * Dispatches state updates for content offset changes synchronously on the main thread.
